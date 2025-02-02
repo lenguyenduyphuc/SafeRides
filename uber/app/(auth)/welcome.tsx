@@ -1,5 +1,5 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, Image } from "react-native";
 import { router } from "expo-router";
 import Swiper from "react-native-swiper";
 import { useRef, useState } from "react";
@@ -9,7 +9,6 @@ const Onboarding = () => {
   const swiperRef = useRef<Swiper>(null);
   const [active, setActive] = useState(0);
 
-  console.log(onboarding);
   return (
     <SafeAreaView className="flex h-full items-center justify-between bg-white">
       <TouchableOpacity
@@ -32,8 +31,21 @@ const Onboarding = () => {
         onIndexChanged={(index) => setActive(index)}
       >
         {onboarding.map((item, index) => (
-          <View key={index}>
+          <View className="flex items-center justify-center p-5" key={index}>
             <Text>{item.title}</Text>
+            <Image
+              source={item.image}
+              className="w-full h-[300px]"
+              resizeMode="contain"
+            />
+            <View className="flex flex-row item-center justify-center w-full mt-100">
+              <Text className="text-black text-3xl font-bold mx-10">
+                {item.title}
+              </Text>
+            </View>
+            <Text className="text-lg font-JakartaSemiBold text-center text-[#858585] mx-10 mt-3">
+              {item.description}
+            </Text>
           </View>
         ))}
       </Swiper>
