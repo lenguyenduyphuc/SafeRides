@@ -1,10 +1,10 @@
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, View, Image, ScrollView } from "react-native";
 import { icons, images } from "@/constants";
 import InputField from "@/components/InputField";
 import { useState } from "react";
 import CustomButton from "@/components/CustomButton";
 import { Link } from "expo-router";
+import OAuth from "@/components/OAuth";
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -27,7 +27,7 @@ const SignUp = () => {
             Create Your Account
           </Text>
         </View>
-        <View className="p-5 text-black font-JakartaSemiBold">
+        <View className="p-5">
           <InputField
             label="Name"
             placeholder="Enter your name"
@@ -60,6 +60,7 @@ const SignUp = () => {
           className="mt-6"
         />
       </View>
+      <OAuth />
       <Link
         href="/sign-in"
         className="text-lg text-center text-general-200 mt-10"
