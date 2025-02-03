@@ -1,4 +1,3 @@
-import { SafeAreaView } from "react-native-safe-area-context";
 import { Text, View, Image, ScrollView } from "react-native";
 import { icons, images } from "@/constants";
 import InputField from "@/components/InputField";
