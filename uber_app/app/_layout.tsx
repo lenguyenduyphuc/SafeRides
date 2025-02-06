@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import "react-native-reanimated";
 import { LogBox } from "react-native";
 
+import "../global.css";
 import { tokenCache } from "@/cache";
 import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
 
