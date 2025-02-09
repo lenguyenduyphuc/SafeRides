@@ -4,6 +4,7 @@ import { useUser } from "@clerk/clerk-expo";
 import { View, Text, Image } from "react-native";
 import { icons } from "@/constants";
 import { formatTime } from "@/lib/utils";
+import Payment from "@/components/Payment";
 
 const BookRide = () => {
   const { user } = useUser();
@@ -81,6 +82,8 @@ const BookRide = () => {
             </Text>
           </View>
         </View>
+
+        <Payment />
       </>
     </RideLayout>
   );
