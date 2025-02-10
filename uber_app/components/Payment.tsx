@@ -15,7 +15,7 @@ const Payment = ({
   const { initPaymentSheet, presentPaymentSheet } = useStripe();
   const [success, setSuccess] = useState(false);
 
-  const confirmHandler = async (PaymentMethod, _, intentCreationCallback) => {
+  const confirmHandler = async (paymentMethod, _, intentCreationCallback) => {
     const { paymentIntent, customer } = await fetchAPI(
       "/(api)/(stripe)/create",
       {
@@ -27,12 +27,24 @@ const Payment = ({
           name: fullName || email.split("@")[0],
           email: email,
           amount: amount,
-          paymentMethodId: PaymentMethod.id,
+          paymentMethodId: paymentMethod.id,
         }),
       }
     );
 
     if (paymentIntent.client_secret) {
+      const { result } = await fetchAPI("/(api)/(stripe)/pay", {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          payment_method_id: paymentMethod.id,
+          payment_intent_id: paymentIntent.id,
+          customer_id: customer,
+          client_secret: paymentIntent.client_secret,
+        }),
+      });
     }
 
     const { clientServer, error } = await response.json();
