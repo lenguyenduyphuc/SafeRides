@@ -54,7 +54,7 @@ const Payment = ({
       intentCreationCallback(error);
     }
   };
-  //still continue
+
   const openPaymentSheet = async () => {
     await initializePaymentSheet();
 
