@@ -45,6 +45,10 @@ const Payment = ({
           client_secret: paymentIntent.client_secret,
         }),
       });
+
+      if (result.client_secret) {
+        // ride/create
+      }
     }
 
     const { clientServer, error } = await response.json();
