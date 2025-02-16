@@ -1,11 +1,12 @@
 import { useDriverStore, useLocationStore } from "@/store";
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import MapView, { Marker, PROVIDER_DEFAULT } from "react-native-maps";
 import { calculateRegion, generateMarkersFromData } from "@/lib/map";
 import { StyleSheet } from "react-native";
 import { useEffect, useState } from "react";
-import { MarkerData } from "@/types/type";
+import { MarkerData, Driver } from "@/types/type";
 import { icons } from "@/constants";
+import { useFetch } from "@/lib/fetch";
 
 const drivers = [
   {
@@ -80,6 +81,7 @@ const styles = StyleSheet.create({
 });
 
 const Map = () => {
+  const { data: drivers, loading, error } = useFetch<Driver[]>("/(api)/driver");
   const {
     userLongitude,
     userLatitude,
@@ -112,6 +114,22 @@ const Map = () => {
       setMarkers(newMarkers);
     }
   }, [drivers]);
+
+  if (loading || !userLatitude || !userLongitude) {
+    return (
+      <View className="flex justify-center items-center w-full">
+        <ActivityIndicator size="small" color="#000" />
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View className="flex justify-center items-center w-full">
+        <Text>Error: {error} </Text>
+      </View>
+    );
+  }
 
   return (
     <View style={styles.container}>
