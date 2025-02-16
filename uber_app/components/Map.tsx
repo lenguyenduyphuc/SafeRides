@@ -100,8 +100,6 @@ const Map = () => {
   });
 
   useEffect(() => {
-    setDrivers(drivers);
-
     if (Array.isArray(drivers)) {
       if (!userLatitude || !userLongitude) return;
 
@@ -113,7 +111,25 @@ const Map = () => {
 
       setMarkers(newMarkers);
     }
-  }, [drivers]);
+  }, [drivers, userLatitude, userLongitude]);
+
+  useEffect(() => {
+    if (
+      markers.length > 0 &&
+      destinationLatitude !== undefined &&
+      destinationLongitude !== undefined
+    ) {
+      calculateDriverTimes({
+        markers,
+        userLongitude,
+        userLatitude,
+        destinationLatitude,
+        destinationLongitude,
+      }).then((drivers) => {
+        setDrivers(drivers as MarkerData[]);
+      });
+    }
+  }, []);
 
   if (loading || !userLatitude || !userLongitude) {
     return (
@@ -156,6 +172,19 @@ const Map = () => {
             }
           ></Marker>
         ))}
+        {destinationLatitude && destinationLongitude && (
+          <>
+            <Marker
+              key="destination"
+              coordinate={{
+                latitude: destinationLatitude,
+                longitude: destinationLongitude,
+              }}
+              title="destination"
+              image={icons.pin}
+            />
+          </>
+        )}
       </MapView>
     </View>
   );
