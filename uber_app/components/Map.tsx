@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { MarkerData, Driver } from "@/types/type";
 import { icons } from "@/constants";
 import { useFetch } from "@/lib/fetch";
+import MapViewDirections from "react-native-maps-directions";
 
 const drivers = [
   {
@@ -182,6 +183,20 @@ const Map = () => {
               }}
               title="destination"
               image={icons.pin}
+            />
+
+            <MapViewDirections
+              origin={{
+                latitude: userLatitude!,
+                longitude: userLongitude!,
+              }}
+              destination={{
+                latitude: destinationLatitude,
+                longitude: destinationLongitude,
+              }}
+              apikey={process.env.EXPO_PUBLIC_PLACES_API_KEY}
+              strokeColor="#0286ff"
+              strokeWidth={3}
             />
           </>
         )}
