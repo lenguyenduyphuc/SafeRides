@@ -6,7 +6,7 @@ import { formatTime } from "@/lib/utils";
 import { DriverCardProps } from "@/types/type";
 
 const DriverCard = ({ item, selected, setSelected }: DriverCardProps) => {
-  console.log(item);
+  console.log("Drivers", item);
   return (
     <TouchableOpacity
       onPress={setSelected}
