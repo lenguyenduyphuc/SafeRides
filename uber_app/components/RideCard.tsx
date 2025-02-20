@@ -15,7 +15,7 @@ const RideCard = ({ ride }: { ride: Ride }) => {
     payment_status,
   } = ride;
 
-  const mapImageUrl = `https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=600&height=400&center=lonlat:${destination_longitude},${destination_latitude}&zoom=14&apiKey=${process.env.EXPO_PUBLIC_GEOAPIFY_API_KEY}`;
+  const mapImageUrl = `https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=600&height=400&center=lonlat:${destination_longitude},${destination_latitude}&zoom=14&apiKey=${process.env.EXPO_PUBLIC_GEOAPIFY_API_KEY}`;r
   return (
     <View className="bg-white rounded-lg shadow-sm shadow-neutral-300 mb-4 p-4">
       <View className="flex-row">
