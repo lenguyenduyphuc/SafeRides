@@ -8,7 +8,6 @@ import { router } from "expo-router";
 
 const ConfirmRide = () => {
   const { drivers, selectedDriver, setSelectedDriver } = useDriverStore();
-  console.log("No driver here? ", drivers);
   return (
     <RideLayout title="Choose a driver" snapPoints={["65%", "85%"]}>
       <FlatList
