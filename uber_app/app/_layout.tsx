@@ -9,7 +9,6 @@ import "../global.css";
 import { tokenCache } from "@/cache";
 import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
 const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY!;
@@ -21,6 +20,7 @@ if (!publishableKey) {
 }
 
 LogBox.ignoreLogs(["Clerk:"]);
+LogBox.ignoreLogs(["Warning:"]);
 
 export default function RootLayout() {
   const [loaded] = useFonts({
