@@ -45,17 +45,13 @@ const Payment = ({
 
   const initializePaymentSheet = async () => {
     const { error } = await initPaymentSheet({
-      merchantDisplayName: "Example, Inc.",
+      merchantDisplayName: "USF SAFE",
       intentConfiguration: {
         mode: {
           amount: parseInt(amount) * 100,
           currencyCode: "usd",
         },
-        confirmHandler: async (
-          paymentMethod,
-          shouldSavePaymentMethod,
-          intentCreationCallback
-        ) => {
+        confirmHandler: async (paymentMethod, _, intentCreationCallback) => {
           const { paymentIntent, customer } = await fetchAPI(
             "/(api)/(stripe)/create",
             {
