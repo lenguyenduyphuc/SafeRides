@@ -1,11 +1,12 @@
-import RideLayout from "@/components/RideLayout";
-import { useDriverStore, useLocationStore } from "@/store";
 import { useUser } from "@clerk/clerk-expo";
-import { View, Text, Image } from "react-native";
+import { StripeProvider } from "@stripe/stripe-react-native";
+import { Image, Text, View } from "react-native";
+
+import Payment from "@/components/Payment";
+import RideLayout from "@/components/RideLayout";
 import { icons } from "@/constants";
 import { formatTime } from "@/lib/utils";
-import Payment from "@/components/Payment";
-import { StripeProvider } from "@stripe/stripe-react-native";
+import { useDriverStore, useLocationStore } from "@/store";
 
 const BookRide = () => {
   const { user } = useUser();
@@ -38,6 +39,7 @@ const BookRide = () => {
               <Text className="text-lg font-JakartaSemiBold">
                 {driverDetails?.title}
               </Text>
+
               <View className="flex flex-row items-center space-x-0.5">
                 <Image
                   source={icons.star}
@@ -50,6 +52,7 @@ const BookRide = () => {
               </View>
             </View>
           </View>
+
           <View className="flex flex-col w-full items-start justify-center py-3 px-5 rounded-3xl bg-general-600 mt-5">
             <View className="flex flex-row items-center justify-between w-full border-b border-white py-3">
               <Text className="text-lg font-JakartaRegular">Ride Price</Text>
@@ -61,7 +64,7 @@ const BookRide = () => {
             <View className="flex flex-row items-center justify-between w-full border-b border-white py-3">
               <Text className="text-lg font-JakartaRegular">Pickup Time</Text>
               <Text className="text-lg font-JakartaRegular">
-                {formatTime(parseInt(`${driverDetails.time!}`))}
+                {formatTime(driverDetails?.time!)}
               </Text>
             </View>
 

@@ -148,7 +148,6 @@ const Map = () => {
       </MapView>
     </View>
   );
-  r;
 };
 
 export default Map;

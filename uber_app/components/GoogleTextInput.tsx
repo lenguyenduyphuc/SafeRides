@@ -6,7 +6,6 @@ import { GoogleInputProps } from "@/types/type";
 
 const googlePlacesApiKey = process.env.EXPO_PUBLIC_PLACES_API_KEY;
 
-console.log()
 const GoogleTextInput = ({
   icon,
   initialLocation,
